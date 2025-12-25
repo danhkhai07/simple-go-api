@@ -3,34 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello Page</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            color: #333;
-            text-align: center;
-            padding: 50px;
-        }
-        h1 {
-            color: #007bff;
-        }
-        p {
-            font-size: 1.2rem;
-        }
-        .footer {
-            margin-top: 40px;
-            font-size: 0.9rem;
-            color: #666;
-        }
-    </style>
+    <title>My Cool Web</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Hello, World!</h1>
-    <p>Welcome to your static HTML page served from Go.</p>
+    <header class="hero">
+        <h1>Welcome to My Cool Page</h1>
+        <p>Static HTML, CSS, and JS in action!</p>
+        <button id="magicButton">Click me!</button>
+    </header>
 
-    <div class="footer">
-        &copy; 2025 Your Name
-    </div>
+    <main>
+        <section class="cards">
+            <div class="card">HTML</div>
+            <div class="card">CSS</div>
+            <div class="card">JavaScript</div>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2025 My Cool Web
+    </footer>
+
+    <script src="js/script.js"></script>
 </body>
 </html>
