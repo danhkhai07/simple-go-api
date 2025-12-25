@@ -3,6 +3,7 @@ package handler
 import (
 	"encoding/json"
 	"log"
+	"os"
 	"net/http"
 )
 
@@ -21,5 +22,27 @@ func HealthHandler(w http.ResponseWriter, r *http.Request) {
 
 
 func HelloHandler(w http.ResponseWriter, r *http.Request) {
-	http.Redirect(w, r, "/healthz", http.StatusPermanentRedirect)
+	w.Header().Set("Content-Type", "text/html")
+	
+	f, err := os.Open("index.html")
+	defer f.Close()
+
+	if err != nil {
+		http.Error(w, "file nôt found", http.StatusNotFound)
+		return
+	}
+
+	stat, err := f.Stat()
+	if err != nil {
+		http.Error(w, "internal error", http.StatusInternalServerError)
+		return
+	}
+
+	http.ServeContent(
+		w,
+		r,
+		stat.Name(),
+		stat.ModTime(),
+		f,
+	)
 }
