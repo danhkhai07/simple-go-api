@@ -1,13 +1,13 @@
 package main
 
 import (
-
+	"first-api/config"
+	"first-api/server"
 )
 
 func main() {
-	// Create dependencies
-	logger := NewLogger() // config pkg
-	cfg := &Config{Host: "0.0.0.0", Port: "5000"} // config pkg
+	logger := config.NewLogger()
+	cfg := &config.Config{Host: "0.0.0.0", Port: "5000"} 
 
-	Run(logger, cfg) // server pkg
+	server.Run(logger, cfg)
 }

@@ -1,4 +1,4 @@
-package main	
+package server
 
 import (
 	"net/http"
@@ -8,12 +8,13 @@ import (
 	"os/signal"
 	"time"
 
+	"first-api/config"
 	"github.com/go-chi/chi"
 )
 
 func NewServer (
-	logger *Logger,
-	cfg *Config,
+	logger *config.Logger,
+	cfg *config.Config,
 ) http.Handler {
 	r := chi.NewRouter()
 
@@ -26,11 +27,11 @@ func NewServer (
 }
 
 func Run(
-	logger *Logger,
-	cfg *Config,
+	logger *config.Logger,
+	cfg *config.Config,
 ) {
 	// Build handler
-	handler := NewServer(logger, cfg) // server pkg
+	handler := NewServer(logger, cfg)
 
 	// Setup HTTP server
 	svr := &http.Server {
