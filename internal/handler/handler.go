@@ -24,15 +24,14 @@ func HealthHandler(w http.ResponseWriter, r *http.Request) {
 func HelloHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	
-	f, err := os.Open("index.html")
-	defer f.Close()
-
+	html, err := os.Open("./protected/hello.html")
+	defer html.Close()
 	if err != nil {
-		http.Error(w, "file nôt found", http.StatusNotFound)
+		http.Error(w, "file not found", http.StatusNotFound)
 		return
 	}
 
-	stat, err := f.Stat()
+	stat, err := html.Stat()
 	if err != nil {
 		http.Error(w, "internal error", http.StatusInternalServerError)
 		return
@@ -43,6 +42,6 @@ func HelloHandler(w http.ResponseWriter, r *http.Request) {
 		r,
 		stat.Name(),
 		stat.ModTime(),
-		f,
+		html,
 	)
 }
